@@ -1,0 +1,33 @@
+{% extends "base.html" %} 
+{% block title %}Book detail Page{% endblock %} 
+{% block content %}
+{% load humanize %}
+
+<div class="row">
+     
+    <div class="col-lg-3">
+        {% if book.image %}
+        <img src="{{book.image.url}}" class="img-fluid" alt="">
+        {%endif%}
+    </div>
+
+    <div class="col-lg-9">
+        <h1>{{book.name}}</h1>
+        <div>Category : {{book.category}}</div>
+        <div>Category : {{book.price|floatformat:2|intcomma}}</div>
+        <a href="#" class="btn btn-success mt-4">Add to cart</a>
+    </div>
+</div>
+<a href="{% url 'book:index' %}" class="mt-4">Back To previous page</a>
+
+<h1>Comment({{book.get_comment_count}})</h1>
+{% for c in book.bookcomment_set.all %}
+<div class="card mb-4">
+    <div class="card-body">
+        <h5>{{c.comment}}</h5>
+        <div>Rating: {{c.rating}}</div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

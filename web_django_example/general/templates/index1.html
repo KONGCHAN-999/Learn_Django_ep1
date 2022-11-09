@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block title %}Index Page{% endblock %} {% block content %}
+<h1>Hello Index</h1>
+<h2>{{ id }}</h2>
+<h2>{{ name }}</h2>
+<h2>{{ email }}</h2>
+
+{% if id == '001' and name == 'Kong' %}
+<h2>Access Error!</h2>
+{% endif %}
+<a href="{% url 'index' %}">Go to Index Page</a> <br>
+<a href="{% url 'book:index' %}">Go to Book Page</a> <br> {% endblock %}
